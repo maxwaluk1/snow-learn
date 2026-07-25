@@ -1,364 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snow Learning Solutions — eLearning Development</title>
-<style>
-  :root {
-    --ice: #e8f4f8;
-    --frost: #b8dce8;
-    --deep: #0f2c3e;
-    --slate: #1e3a4c;
-    --accent: #00b4d8;
-    --white: #ffffff;
-    --muted: #6b8fa3;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--ice);
-    color: var(--deep);
-    line-height: 1.6;
-  }
-
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  /* Hero */
-  .hero {
-    background:
-      linear-gradient(135deg, rgba(15,44,62,0.92) 0%, rgba(30,58,76,0.88) 100%),
-      url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&q=80') center/cover no-repeat;
-    color: var(--white);
-    padding: 6rem 1.5rem 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(0,180,216,0.08) 0%, transparent 40%);
-    pointer-events: none;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.6rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-    position: relative;
-  }
-
-  .hero h1 span {
-    color: var(--accent);
-  }
-
-  .hero p.tagline {
-    font-size: clamp(1rem, 2.5vw, 1.35rem);
-    color: var(--frost);
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    position: relative;
-  }
-
-  .hero .cta {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--white);
-    padding: 0.85rem 2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-  }
-
-  .hero .cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,180,216,0.35);
-    text-decoration: none;
-  }
-
-  /* Sections */
-  section {
-    padding: 4rem 1.5rem;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: var(--deep);
-  }
-
-  /* Services */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 1.75rem;
-    box-shadow: 0 4px 20px rgba(15,44,62,0.06);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(15,44,62,0.1);
-  }
-
-  .card .icon {
-    width: 44px;
-    height: 44px;
-    margin-bottom: 1rem;
-    color: var(--accent);
-  }
-
-  .card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--slate);
-  }
-
-  .card p {
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-
-  /* Projects */
-  .project {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 1.75rem;
-    margin-bottom: 1.25rem;
-    box-shadow: 0 4px 20px rgba(15,44,62,0.06);
-    border-left: 4px solid var(--accent);
-    transition: transform 0.2s;
-  }
-
-  .project:hover {
-    transform: translateX(4px);
-  }
-
-  .project.featured {
-    border-left: 4px solid var(--accent);
-    background: linear-gradient(135deg, var(--white) 0%, #f0f9fc 100%);
-  }
-
-  .project h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    color: var(--slate);
-  }
-
-  .project p {
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-
-  .project .tag {
-    display: inline-block;
-    background: var(--ice);
-    color: var(--slate);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    margin-top: 0.75rem;
-    margin-right: 0.4rem;
-  }
-
-  .featured-badge {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--white);
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Contact */
-  .contact {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 2.5rem;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(15,44,62,0.06);
-  }
-
-  .contact h2 {
-    margin-bottom: 0.75rem;
-  }
-
-  .contact p {
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .contact .email {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--accent);
-  }
-
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 2rem 1.5rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snow Learning Solutions | Learning Technology & Instructional Design</title>
+  <meta name="description" content="Snow Learning Solutions helps organizations turn complex systems, processes, and expertise into practical digital learning experiences.">
+  <meta property="og:title" content="Snow Learning Solutions">
+  <meta property="og:description" content="Learning technology, instructional design, SCORM development, and LMS consulting.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">S</span>
+      <span>Snow Learning Solutions</span>
+    </a>
 
-  <header class="hero">
-    <h1>Snow <span>Learning</span> Solutions</h1>
-    <p class="tagline">eLearning development, SCORM packaging, and AI-assisted course design for teams that need training that actually works.</p>
-    <a href="#contact" class="cta">Let's Talk</a>
-  </header>
+    <button class="menu-toggle" aria-label="Open navigation">☰</button>
 
-  <section id="about">
-    <h2>What I Do</h2>
-    <p style="color: var(--muted); margin-bottom: 2rem;">I build online training programs end-to-end — from raw SME content to polished, trackable courses. Whether you need SCORM packages for your LMS, interactive video series, or full certification programs, I handle the tech so your team can focus on the expertise.</p>
-    <div class="services-grid">
-      <div class="card reveal">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <line x1="8" y1="21" x2="16" y2="21"></line>
-          <line x1="12" y1="17" x2="12" y2="21"></line>
-          <path d="M6 8h.01M6 12h.01M10 8h8M10 12h5"></path>
-        </svg>
-        <h3>SCORM & LMS Packaging</h3>
-        <p>Build courses in SCORM 1.2 / 2004, xAPI, and LTI. Tested, trackable, and ready to drop into MedTrainer, Moodle, Totara, or any major LMS.</p>
+    <nav class="main-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="contact.html" class="nav-cta">Let's Talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container hero-content">
+    <div class="eyebrow">LEARNING + TECHNOLOGY</div>
+    <h1>Make complex things<br><span>easier to learn.</span></h1>
+
+    <p class="hero-copy">
+      Snow Learning Solutions helps organizations turn complicated software,
+      processes, and expertise into learning experiences people can actually use.
+    </p>
+
+    <div class="hero-actions">
+      <a href="contact.html" class="button button-primary">Start a Conversation</a>
+      <a href="work.html" class="button button-secondary">See My Work →</a>
+    </div>
+
+    <div class="hero-note">
+      <span class="status-dot"></span>
+      Instructional design · LMS · Enterprise software · Technical training
+    </div>
+  </div>
+</section>
+
+<section class="intro-section">
+  <div class="container two-column">
+    <div>
+      <div class="eyebrow">THE DIFFERENCE</div>
+      <h2>Learning is only part of the system.</h2>
+    </div>
+
+    <div class="intro-copy">
+      <p>
+        Good training isn't just about presenting information clearly. It has to
+        fit the systems people use, the workflows they follow, and the goals
+        the organization is trying to accomplish.
+      </p>
+      <p>
+        That's where I work best. My background spans instructional design,
+        enterprise software, product management, LMS administration, and
+        technical training. I understand both sides of the problem: what
+        learners need and what the technology needs to do to support them.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="services-preview">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">WHAT I DO</div>
+        <h2>Learning solutions, end to end.</h2>
       </div>
-      <div class="card reveal">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-          <path d="M2 17l10 5 10-5"></path>
-          <path d="M2 12l10 5 10-5"></path>
-          <path d="M12 7v10" stroke-dasharray="2 2"></path>
-          <circle cx="12" cy="7" r="1.5" fill="currentColor" stroke="none"></circle>
-        </svg>
-        <h3>AI-Assisted Content</h3>
-        <p>Leverage AI to accelerate writing, scenario design, and assessment creation — without sacrificing quality or accuracy.</p>
+      <a href="services.html" class="text-link">View all services →</a>
+    </div>
+
+    <div class="service-grid">
+      <article class="service-card">
+        <span class="card-number">01</span>
+        <div class="service-icon">↗</div>
+        <h3>Instructional Design</h3>
+        <p>Turn subject-matter expertise into clear, useful learning experiences.</p>
+      </article>
+
+      <article class="service-card">
+        <span class="card-number">02</span>
+        <div class="service-icon">▣</div>
+        <h3>SCORM Development</h3>
+        <p>Interactive, LMS-ready courses built around the way people actually learn.</p>
+      </article>
+
+      <article class="service-card">
+        <span class="card-number">03</span>
+        <div class="service-icon">⌘</div>
+        <h3>LMS Consulting</h3>
+        <p>Configuration, administration, migration, and optimization for modern LMS environments.</p>
+      </article>
+
+      <article class="service-card">
+        <span class="card-number">04</span>
+        <div class="service-icon">◈</div>
+        <h3>Technical Training</h3>
+        <p>Training for software, systems, workflows, and products that aren't easy to explain.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="feature-section">
+  <div class="container feature-grid">
+    <div class="feature-visual">
+      <div class="system-window">
+        <div class="window-bar">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="system-content">
+          <div class="system-sidebar"></div>
+          <div class="system-main">
+            <div class="fake-line wide"></div>
+            <div class="fake-line"></div>
+            <div class="fake-cards">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="fake-line medium"></div>
+          </div>
+        </div>
       </div>
-      <div class="card reveal">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"></polygon>
-          <path d="M6 21h12"></path>
-        </svg>
-        <h3>Video Production</h3>
-        <p>Script, record, and edit training video series with professional polish — from screen captures to presenter-led content.</p>
+    </div>
+
+    <div class="feature-copy">
+      <div class="eyebrow">A TECHNICAL PERSPECTIVE</div>
+      <h2>I don't just build the course. I understand where it lives.</h2>
+      <p>
+        I've worked inside enterprise LMS platforms, managed large learning
+        environments, collaborated with software users and subject-matter
+        experts, and helped translate product requirements into training.
+      </p>
+      <p>
+        That means fewer handoffs and fewer surprises between design,
+        development, deployment, and the learner's experience.
+      </p>
+      <a href="about.html" class="text-link">Meet Max →</a>
+    </div>
+  </div>
+</section>
+
+<section class="case-highlight">
+  <div class="container">
+    <div class="eyebrow">FEATURED EXPERIENCE</div>
+
+    <div class="case-layout">
+      <div>
+        <h2>Scaling an enterprise learning environment.</h2>
       </div>
-      <div class="card reveal">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <path d="M9 15l2 2 4-4" stroke-width="2"></path>
-          <line x1="9" y1="11" x2="15" y2="11"></line>
-        </svg>
-        <h3>Certification Programs</h3>
-        <p>Full certificate workflows: course sequencing, testing, passing criteria, automated delivery, and completion tracking.</p>
+
+      <div>
+        <p>
+          I helped lead the transition from a legacy Totara learning
+          environment to Moodle Workplace, supporting a large and growing
+          ecosystem of users, organizations, courses, enrollment structures,
+          and automation.
+        </p>
+
+        <a href="work.html" class="button button-secondary">Explore the Work →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="work">
-    <h2>Selected Work</h2>
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div class="eyebrow">HAVE A PROJECT?</div>
+    <h2>Let's figure out what it needs.</h2>
+    <p>
+      If you have a training, LMS, or learning technology problem that needs
+      solving, I'd like to hear about it.
+    </p>
+    <a href="contact.html" class="button button-primary">Start a Conversation</a>
+  </div>
+</section>
 
-    <div class="project featured reveal">
-      <span class="featured-badge">Enterprise Migration</span>
-      <h3>Totara to Moodle Workplace — Large-Scale Enterprise LMS Migration</h3>
-      <p>Led the transformation of a large-scale enterprise learning environment from a legacy Totara platform to Moodle Workplace. Migrated thousands of users, hundreds of organizations, extensive course content, and complex enrollment and automation structures. Established a scalable LMS architecture for continued growth, bridging the gap between learning strategy and the underlying technology required to deliver it.</p>
-      <span class="tag">LMS Migration</span>
-      <span class="tag">Enterprise Scale</span>
-      <span class="tag">Totara</span>
-      <span class="tag">Moodle Workplace</span>
-      <span class="tag">Automation</span>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div>
+      <a href="index.html" class="brand footer-brand">
+        <span class="brand-mark">S</span>
+        <span>Snow Learning Solutions</span>
+      </a>
+      <p>Learning technology for organizations that need people to know what they're doing.</p>
     </div>
 
-    <div class="project reveal">
-      <h3>JustFOIA Certification Program</h3>
-      <p>Partnered with subject-matter experts to build a complete certificate course track covering general usage through administration. Includes interactive presentations, knowledge testing, custom certificate design, and automated delivery.</p>
-      <span class="tag">Certification</span>
-      <span class="tag">SCORM</span>
-      <span class="tag">SME Collaboration</span>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Work</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.linkedin.com/in/maximillian-waluk-916715115/" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
+  </div>
 
-    <div class="project reveal">
-      <h3>Laserfiche AI Essentials</h3>
-      <p>Created a comprehensive video training series covering Laserfiche's new AI tools. Produced in collaboration with the content production department to ensure accuracy and clarity for end users.</p>
-      <span class="tag">Video Series</span>
-      <span class="tag">AI Tools</span>
-      <span class="tag">Enterprise Software</span>
-    </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Snow Learning Solutions</span>
+    <span>Tallahassee, Florida</span>
+  </div>
+</footer>
 
-    <div class="project reveal">
-      <h3>Wylie, TX — Cybersecurity & AI Compliance Training</h3>
-      <p>Built a compliance training program that automates user allocation, completion notifications, and reporting. Reduced manual management overhead while ensuring users stay in compliance.</p>
-      <span class="tag">Compliance</span>
-      <span class="tag">Automation</span>
-      <span class="tag">Government</span>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="contact reveal">
-      <h2>Start a Project</h2>
-      <p>Have training content that needs to become a real course? Let's talk through scope, timeline, and delivery.</p>
-      <p class="email"><a href="mailto:maxwaluk@gmail.com">maxwaluk@gmail.com</a></p>
-      <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--muted);">Max Waluk — Snow Learning Solutions</p>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Snow Learning Solutions. Built for GitHub Pages.
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-
+<script src="js/main.js"></script>
 </body>
 </html>
