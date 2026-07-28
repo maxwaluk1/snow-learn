@@ -60,7 +60,7 @@ a {
   justify-content: space-between;
 }
 
-.brand {
+. {
   display: inline-flex;
   align-items: center;
   gap: 11px;
@@ -68,7 +68,7 @@ a {
   letter-spacing: -0.02em;
 }
 
-.brand-mark {
+.-mark {
   width: 34px;
   height: 34px;
   display: grid;
@@ -223,7 +223,12 @@ a {
   border-color: var(--blue);
   color: var(--blue);
 }
-
+.brand-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
 .hero-note {
   margin-top: 45px;
   color: var(--gray-500);
@@ -825,7 +830,7 @@ form select:focus {
   padding-bottom: 55px;
 }
 
-.footer-brand {
+.footer- {
   color: white;
 }
 
