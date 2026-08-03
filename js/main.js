@@ -1,7 +1,8 @@
 (() => {
+  document.documentElement.classList.add('js-enabled');
   document.querySelectorAll('.brand').forEach((brand) => {
     if (brand.classList.contains('footer-brand')) {
-      brand.innerHTML = '<img src="assets/images/logo.svg" alt="Snow Learning Solutions" class="brand-logo">';
+      brand.textContent = 'Snow Learning Solutions';
       brand.setAttribute('aria-label', 'Snow Learning Solutions home');
       return;
     }
@@ -56,4 +57,20 @@
 
   nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
   window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+
+  const revealItems = document.querySelectorAll('main section > .container, .service-card, .credential, .case-study');
+  revealItems.forEach((item) => item.classList.add('reveal'));
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          currentObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealItems.forEach((item) => observer.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  }
 })();
