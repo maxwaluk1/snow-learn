@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maxwaluk1.github.io/snow-learn/sitemap.xml
