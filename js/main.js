@@ -6,13 +6,22 @@
       return;
     }
     if (!brand.querySelector('img')) {
-      brand.innerHTML = '<img src="assets/images/logo.png" alt="Snow Learning Solutions" class="brand-logo">';
+      brand.innerHTML = '<img src="assets/images/logo.svg" alt="Snow Learning Solutions" class="brand-logo">';
       brand.setAttribute('aria-label', 'Snow Learning Solutions home');
     }
   });
   const button = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.main-nav');
   if (!button || !nav) return;
+
+  const hero = document.querySelector('.hero-content');
+  if (hero && !hero.querySelector('.hero-system')) {
+    const visual = document.createElement('div');
+    visual.className = 'hero-system';
+    visual.setAttribute('aria-hidden', 'true');
+    visual.innerHTML = '<div class="hero-system-head"><span></span><span></span><span></span><b>Learning ecosystem</b></div><div class="hero-system-body"><div class="system-node node-one"><i></i><strong>Strategy</strong><small>Plan with purpose</small></div><div class="system-node node-two"><i></i><strong>Content</strong><small>Build for use</small></div><div class="system-node node-three"><i></i><strong>Platform</strong><small>Scale with confidence</small></div><div class="system-connector connector-one"></div><div class="system-connector connector-two"></div></div>';
+    hero.appendChild(visual);
+  }
 
   nav.id = 'site-navigation';
   nav.setAttribute('aria-label', 'Primary navigation');
