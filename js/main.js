@@ -1,13 +1,15 @@
 (() => {
   document.querySelectorAll('.brand').forEach((brand) => {
     if (brand.classList.contains('footer-brand')) {
-      brand.innerHTML = '<img src="favicon.svg" alt="" class="footer-mark"><span>Snow Learning Solutions</span>';
+      brand.innerHTML = '<img src="assets/images/logo.svg" alt="Snow Learning Solutions" class="brand-logo">';
       brand.setAttribute('aria-label', 'Snow Learning Solutions home');
       return;
     }
     if (!brand.querySelector('img')) {
       brand.innerHTML = '<img src="assets/images/logo.svg" alt="Snow Learning Solutions" class="brand-logo">';
       brand.setAttribute('aria-label', 'Snow Learning Solutions home');
+    } else {
+      brand.querySelector('img').src = 'assets/images/logo.svg';
     }
   });
   const button = document.querySelector('.menu-toggle');
