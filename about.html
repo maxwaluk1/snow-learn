@@ -12,6 +12,18 @@
   <meta property="og:url" content="https://maxwaluk1.github.io/snow-learn/about.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Ensure LinkedIn badge and generated iframe scale on small screens */
+    .linkedin-badge-card .LI-profile-badge,
+    .linkedin-badge-card .badge-base,
+    .linkedin-badge-card iframe {
+      width: 100% !important;
+      max-width: 320px !important;
+      box-sizing: border-box;
+      display: block !important;
+    }
+    .linkedin-badge-card .LI-profile-badge a { display: inline-block; width: 100%; text-align: center; }
+  </style>
 </head>
 
 <body>
@@ -73,6 +85,10 @@
               Contact me
             </a>
           </div>
+        </div>
+        <!-- LinkedIn profile badge (responsive) -->
+        <div class="badge-base LI-profile-badge" data-version="v1" data-size="medium" data-locale="en_US" data-type="VERTICAL" data-theme="light" data-vanity="maximillian-waluk-916715115" aria-label="LinkedIn profile badge">
+          <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/maximillian-waluk-916715115?trk=profile-badge" target="_blank" rel="noopener">View LinkedIn profile</a>
         </div>
       </div>
 
