@@ -125,6 +125,21 @@ h3 { font-size: 1.1rem; line-height: 1.25; }
   .linkedin-badge-card .LI-profile-badge,
   .linkedin-badge-card .badge-base,
   .linkedin-badge-card iframe { width: 100% !important; max-width: 100% !important; box-sizing: border-box; display: block !important; }
+  /* Additional guard: ensure nothing inside the badge overflows (Chrome fix) */
+  .linkedin-badge-card,
+  .linkedin-badge-card * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .linkedin-badge-card iframe {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    border: 0 !important;
+    overflow: hidden !important;
+  }
   /* If you want to hide the portrait image (headshot) when only the badge is desired, uncomment: */
   /* .portrait-image { display: none; } */
 }
